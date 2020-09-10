@@ -1,0 +1,31 @@
+$block: 'header';
+
+.#{$block} {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    background-color: gray;
+
+    .button {
+        position: absolute;
+        width: 130px;
+        top: 5px;
+        left: 0;
+    }
+    
+    .title{
+        font-size: 30px;
+        color: white;
+    }
+
+    .cart {
+        position: absolute;
+        top: 10px;
+        right: 0;
+    }
+  }
+  

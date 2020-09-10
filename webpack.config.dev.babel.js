@@ -21,6 +21,9 @@ module.exports = {
         port: 3000,
         hot: true,
     },
+    resolve: {
+        extensions: ['.js', '.jsx', 'json', 'scss', 'css'],
+    },
     module: {
         rules: [
             {
@@ -46,12 +49,6 @@ module.exports = {
                         options: { sourceMap: true },
                     },
                     {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                    {
                         loader: 'sass-loader',
                         options: { sourceMap: true },
                     },
@@ -72,6 +69,11 @@ module.exports = {
         ],
     },
     plugins: [
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: './src/assets', to: 'assets' },
+            ]
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 devServer: true,

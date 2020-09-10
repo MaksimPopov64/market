@@ -24,6 +24,9 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         filename: '[name].js',
     },
+    resolve: {
+        extensions: ['.js', '.jsx', 'json', 'scss', 'css'],
+    },
     module: {
         rules: [
             {
@@ -67,7 +70,7 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin({
             patterns: [
-                { from: 'src/img', to: 'img' },
+                { from: './src/assets', to: 'assets' },
             ]
         }),
         new webpack.SourceMapDevToolPlugin({

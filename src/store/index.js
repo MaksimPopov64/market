@@ -6,8 +6,10 @@ import {
   combineReducers,
 } from 'redux';
 
-const reducers = combineReducers({
+import cart from './cart/reducer';
 
+const reducers = combineReducers({
+  cart
 });
 
 const enhancers = compose(

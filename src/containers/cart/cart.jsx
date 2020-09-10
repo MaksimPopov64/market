@@ -1,21 +1,33 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { Header } from '../../components/header/header';
+import { Button } from '../../components/button/button';
+import { cartItemsSelector, amountSelector, sumSelector } from '../../store/cart/selectors';
+import { clearCart } from '../../store/cart/actions';
+import { ProductsCollection } from '../products-collection/products-collection';
+import { Total } from '../../components/total/total';
 
-const Main = props => (
-    <div className="container">
-        <h1 className="some-user-class">Hello from ReactJS</h1>
-        <div>
-            <button className="btn btn-primary mr-3" onClick={props.decrement}>-</button>
-            <span>{props.value}</span>
-            <button className="btn btn-primary ml-3" onClick={props.increment}>+</button>
-        </div>
-    </div>
-);
+const Cart = props => {
+    const dispatch = useDispatch();
+    const goods = useSelector(state => cartItemsSelector(state));
+    const goodsCount = useSelector(state => amountSelector(state));
+    const sum = useSelector(state => sumSelector(state));
 
-Main.propTypes = {
-    value: PropTypes.number.isRequired,
-    increment: PropTypes.func.isRequired,
-    decrement: PropTypes.func.isRequired,
-};
+    return (
+        <div className="container">
+            <Header title="Market" productsInCart={goodsCount} >
+                {!!goodsCount &&
+                    <Button
+                        text="Очистить корзину"
+                        handleClick={() => dispatch(clearCart())} />
+                }
+            </Header>
 
-export default Main;
+            <ProductsCollection type="cart" products={goods} />
+            {!!goodsCount &&
+                <Total sum={sum} />
+            }
+        </div >)
+}
+
+export default Cart;
