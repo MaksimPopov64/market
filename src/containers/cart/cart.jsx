@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Header } from '../../components/header/header';
-import { Button } from '../../components/button/button';
-import { cartItemsSelector, amountSelector, sumSelector } from '../../store/cart/selectors';
+import { Header } from '../../components/header';
+import { Button } from '../../components/button';
+import { ProductsCollection } from '../products-collection';
+import { Total } from '../../components/total';
+
 import { clearCart } from '../../store/cart/actions';
-import { ProductsCollection } from '../products-collection/products-collection';
-import { Total } from '../../components/total/total';
+import { cartItemsSelector, amountSelector, sumSelector } from '../../store/cart/selectors';
 
 const Cart = props => {
     const dispatch = useDispatch();

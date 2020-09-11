@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeItem, decrementCount, incrementCount } from '../../store/cart/actions';
-import { Button } from '../../components/button/button';
-import { ProductCard } from '../../components/product-card/product-card';
+import { Button } from '../../components/button';
+import { ProductCard } from '../../components/product-card';
 import { countersSelector } from '../../store/cart/selectors';
 
 
@@ -11,7 +11,7 @@ import './products-collection.scss';
 
 const block = 'products-collection';
 
-export const ProductsCollection = ({ products, type, children }) => {
+const ProductsCollection = ({ products, type, children }) => {
     const dispatch = useDispatch();
     const counters = useSelector(countersSelector);
 
@@ -46,3 +46,5 @@ ProductsCollection.propTypes = {
     Products: PropTypes.object,
     type: PropTypes.string,
 };
+
+export default ProductsCollection;

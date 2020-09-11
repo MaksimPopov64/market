@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { goods } from '../../mocks/goods';
-import { Header } from '../../components/header/header';
-import { Search } from '../../components/search/search';
+import { Header } from '../../components/header';
+import { Search } from '../../components/search';
+import { ProductsCollection } from '../products-collection';
 
 import { amountSelector } from '../../store/cart/selectors';
-import { ProductsCollection } from '../products-collection/products-collection';
 
 const Main = props => {
     const goodsCount = useSelector(amountSelector);

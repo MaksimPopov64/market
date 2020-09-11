@@ -5,7 +5,7 @@ import './total.scss';
 
 const block = 'total';
 
-export const Total = ({ sum }) => (
+const Total = ({ sum }) => (
     <section className={block}>
         <div>Итого:</div>
         <div>{sum}</div>
@@ -16,3 +16,5 @@ export const Total = ({ sum }) => (
 Total.propTypes = {
     sum: PropTypes.number,
 };
+
+export default Total;

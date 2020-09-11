@@ -1,1 +1,1 @@
-export { default as ProductsCollection } from './products-collection.jsx';
+export { default as ProductsCollection } from './products-collection';

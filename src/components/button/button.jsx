@@ -5,7 +5,7 @@ const block = 'button';
 import './button.scss';
 
 
-export const Button = ({ text, handleClick, className = '' }) => (
+const Button = ({ text, handleClick, className = '' }) => (
     <button
         className={`${block} ${className}`}
         onClick={handleClick}>
@@ -18,3 +18,5 @@ Button.propTypes = {
     onClick: PropTypes.func,
     className: PropTypes.string,
 };
+
+export default Button;

@@ -4,7 +4,7 @@ import './product-card.scss';
 
 const block = 'product-card';
 
-export const ProductCard = ({ text, url, price, className, children }) => (
+const ProductCard = ({ text, url, price, className, children }) => (
 
     <div className={`${block} ${className}`}>
         <img
@@ -25,3 +25,4 @@ ProductCard.propTypes = {
     children: PropTypes.node,
 };
 
+export default ProductCard;

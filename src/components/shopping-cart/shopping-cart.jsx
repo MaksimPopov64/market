@@ -5,7 +5,7 @@ import './shopping-cart.scss';
 
 const block = 'shopping-cart';
 
-export const ShoppingCart = ({ counter, className }) => (
+const ShoppingCart = ({ counter, className }) => (
 
     <div
         className={`${block} ${className}`}
@@ -19,3 +19,5 @@ ShoppingCart.propTypes = {
     counter: PropTypes.number,
     className: PropTypes.string,
 };
+
+export default ShoppingCart;

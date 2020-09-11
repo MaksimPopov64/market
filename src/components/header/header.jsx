@@ -4,11 +4,11 @@ import {
     Link,
 } from "react-router-dom";
 
-import { ShoppingCart } from '../shopping-cart/shopping-cart';
+import { ShoppingCart } from '../shopping-cart';
 
 import './header.scss';
 
-export const Header = ({ title, url, productsInCart, children }) => (
+const Header = ({ title, url, productsInCart, children }) => (
     <div className="header">
         <div className="button">{children}</div>
         <section className="title">
@@ -28,3 +28,5 @@ Header.propTypes = {
     productsInCart: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     children: PropTypes.node,
 };
+
+export default Header;
