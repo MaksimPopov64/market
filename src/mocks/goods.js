@@ -2,43 +2,43 @@ export const goods = [
     {
         id: '1',
         img: 'assets/shirt.jpg',
-        price: 3444,
+        price: 221,
         name: 'Рубашка'
     },
     {
         id: '2',
-        img: ' ',
-        price: 324,
+        img: 'assets/cap.jpg',
+        price: 11,
         name: 'Кепка'
     },
     {
         id: '3',
-        img: ' ',
-        price: 323,
+        img: 'assets/undershirt.jpg',
+        price: 33,
         name: 'Майка'
     },
     {
         id: '4',
-        img: ' ',
-        price: 3244,
+        img: 'assets/nails.jpg',
+        price: 34,
         name: 'Гвозди'
     },
     {
         id: '5',
-        img: ' ',
-        price: 3244,
-        name: 'Гвозди'
+        img: 'assets/soap.jpg',
+        price: 44,
+        name: 'мыло'
     },
     {
         id: '6',
-        img: ' ',
-        price: 3244,
-        name: 'Гвозди'
+        img: 'assets/wood.jpg',
+        price: 144,
+        name: 'доски'
     },
     {
         id: '7',
-        img: ' ',
-        price: 3244,
-        name: 'Гвозди'
+        img: 'assets/helicopter.jpg',
+        price: 32440,
+        name: 'Вертолёт'
     }
 ]

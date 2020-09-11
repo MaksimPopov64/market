@@ -4,7 +4,7 @@ import webpack from 'webpack';
 
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import CleanWebpackPlugin from 'clean-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 import ImageMinPlugin from 'imagemin-webpack-plugin';
@@ -17,7 +17,7 @@ module.exports = {
     entry: {
         main: [
             '@babel/polyfill',
-            './src/app/index.js',
+            './src/index.js',
         ],
     },
     output: {
@@ -51,18 +51,21 @@ module.exports = {
                         options: { sourceMap: true },
                     },
                     {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true,
-                            plugins: [
-                                autoprefixer,
-                            ],
-                        },
-                    },
-                    {
                         loader: 'sass-loader',
                         options: { sourceMap: true },
                     },
+                ],
+            },
+            {
+                test: /\.(png|gif|jpe?g)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[ext]',
+                        },
+                    },
+                    'img-loader',
                 ],
             },
         ],
@@ -77,7 +80,7 @@ module.exports = {
             filename: '[name].js.map',
             exclude: ['bundle.js'],
         }),
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: '[name].[hash].css',
             chunkFilename: '[id].[hash].css',
