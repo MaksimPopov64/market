@@ -20,12 +20,9 @@ const Cart = () => {
 
   return (
     <div className="container">
-      <Header title="Market" productsInCart={goodsCount}>
+      <Header title="Market" productsInCart={goodsCount} backUrl="/">
         {!!goodsCount && (
-          <Button
-            text="Очистить корзину"
-            handleClick={() => dispatch(clearCart())}
-          />
+          <Button text="Очистить" handleClick={() => dispatch(clearCart())} />
         )}
       </Header>
 

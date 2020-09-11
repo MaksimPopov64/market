@@ -6,18 +6,14 @@ import './shopping-cart.scss';
 const block = 'shopping-cart';
 
 const ShoppingCart = ({ counter, className }) => (
-
-    <div
-        className={`${block} ${className}`}
-    >
-        {!!counter && <div className="counter">{counter}</div>}
-    </div >
-
+  <div className={`${block} ${className}`}>
+    {!!counter && <div className="counter">{counter}</div>}
+  </div>
 );
 
 ShoppingCart.propTypes = {
-    counter: PropTypes.number,
-    className: PropTypes.string,
+  counter: PropTypes.number,
+  className: PropTypes.string,
 };
 
 export default ShoppingCart;

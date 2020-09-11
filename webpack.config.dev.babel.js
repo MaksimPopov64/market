@@ -4,89 +4,86 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 module.exports = {
-    devtool: false,
-    entry: {
-        main: [
-            '@babel/polyfill',
-            './src/index.js',
+  devtool: false,
+  entry: {
+    main: ['@babel/polyfill', './src/index.js'],
+  },
+  output: {
+    filename: '[name].js',
+    path: __dirname + '/build',
+    chunkFilename: '[id].[chunkhash].js',
+  },
+  devServer: {
+    historyApiFallback: true,
+    port: 3000,
+    hot: true,
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', 'json', 'scss', 'css'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(jsx?)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/react'],
+              cacheDirectory: true,
+              plugins: ['react-hot-loader/babel'],
+            },
+          },
         ],
-    },
-    output: {
-        filename: '[name].js',
-        path: __dirname + '/build',
-        chunkFilename: '[id].[chunkhash].js'
-    },
-    devServer: {
-        historyApiFallback: true,
-        port: 3000,
-        hot: true,
-    },
-    resolve: {
-        extensions: ['.js', '.jsx', 'json', 'scss', 'css'],
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(jsx?)$/,
-                exclude: /node_modules/,
-                use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env', '@babel/react'],
-                        cacheDirectory: true,
-                        plugins: ['react-hot-loader/babel'],
-                    },
-                }],
-            },
-            {
-                test: /\.(sa|sc|c)ss$/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: { sourceMap: true },
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: { sourceMap: true },
-                    },
-                ],
-            },
-            {
-                test: /\.(png|gif|jpe?g)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[path][name].[ext]',
-                        },
-                    },
-                    'img-loader',
-                ],
-            },
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: { sourceMap: true },
+          },
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: true },
+          },
         ],
-    },
-    plugins: [
-        new CopyWebpackPlugin({
-            patterns: [
-                { from: './src/assets', to: 'assets' },
-            ]
-        }),
-        new webpack.DefinePlugin({
-            'process.env': {
-                devServer: true,
+      },
+      {
+        test: /\.(png|gif|jpe?g)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]',
             },
-        }),
-        new webpack.SourceMapDevToolPlugin({
-            filename: '[name].js.map',
-            exclude: ['bundle.js'],
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-        new HtmlWebpackPlugin({
-            filename: './index.html',
-            template: './src/index.html',
-        }),
+          },
+          'img-loader',
+        ],
+      },
     ],
+  },
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [{ from: './src/assets', to: 'assets' }],
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        devServer: true,
+      },
+    }),
+    new webpack.SourceMapDevToolPlugin({
+      filename: '[name].js.map',
+      exclude: ['bundle.js'],
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      filename: './index.html',
+      template: './src/index.html',
+    }),
+  ],
 };
