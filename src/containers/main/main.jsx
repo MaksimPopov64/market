@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import _ from 'lodash';
 import { goods } from '../../mocks/goods';
 import { Header } from '../../components/header/header';
+import { Search } from '../../components/search/search';
 
 import { amountSelector } from '../../store/cart/selectors';
 import { ProductsCollection } from '../products-collection/products-collection';
 
 const Main = props => {
-    const goodsCount = useSelector(state => amountSelector(state));
+    const goodsCount = useSelector(amountSelector);
     const [goodsItems, filterGoods] = useState(goods);
     const handleChange = val => {
         if (val.length) {
@@ -19,11 +19,10 @@ const Main = props => {
     return (
         <div>
             <Header title="Market" url="/cart" productsInCart={goodsCount} />
-            <div style={{ paddingTop: '50px' }}>
-                <input type="text" placeholder="Search" onChange={(e) => _.debounce(handleChange(e.target.value))} />
-            </div>
-            <ProductsCollection type="main" products={goodsItems} />
+            <ProductsCollection type="main" products={goodsItems} >
+                <Search handleChange={handleChange} />
+            </ProductsCollection>
         </div>);
 }
 
-export default Main;
+export default React.memo(Main);

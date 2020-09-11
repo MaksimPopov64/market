@@ -9,9 +9,9 @@ import { Total } from '../../components/total/total';
 
 const Cart = props => {
     const dispatch = useDispatch();
-    const goods = useSelector(state => cartItemsSelector(state));
-    const goodsCount = useSelector(state => amountSelector(state));
-    const sum = useSelector(state => sumSelector(state));
+    const goods = useSelector(cartItemsSelector);
+    const goodsCount = useSelector(amountSelector);
+    const sum = useSelector(sumSelector);
 
     return (
         <div className="container">
@@ -30,4 +30,4 @@ const Cart = props => {
         </div >)
 }
 
-export default Cart;
+export default React.memo(Cart);
