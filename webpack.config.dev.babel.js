@@ -3,8 +3,6 @@ import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-import autoprefixer from 'autoprefixer';
-
 module.exports = {
     devtool: false,
     entry: {
@@ -15,6 +13,8 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
+        path: __dirname + '/build',
+        chunkFilename: '[id].[chunkhash].js'
     },
     devServer: {
         historyApiFallback: true,
