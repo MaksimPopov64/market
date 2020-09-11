@@ -1,15 +1,17 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { browserHistory } from 'history';
+import { createBrowserHistory } from 'history';
 import { Main } from './containers/main';
 import { Cart } from './containers/cart';
 
 import store from './store';
 
+const history = createBrowserHistory();
+
 const App = () => (
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={history}>
       <Switch>
         <Route exact path="/" render={() => <Main />} />
         <Route path="/cart" render={() => <Cart />} />
