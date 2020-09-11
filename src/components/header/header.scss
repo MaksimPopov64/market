@@ -9,6 +9,7 @@ $block: 'header';
     align-items: center;
     height: 45px;
     background-color: gray;
+    z-index: 99;
 
     .button {
         position: absolute;
