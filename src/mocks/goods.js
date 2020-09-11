@@ -41,4 +41,4 @@ export const goods = [
         price: 32440,
         name: 'Вертолёт'
     }
-]
+];

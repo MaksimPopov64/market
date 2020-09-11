@@ -6,29 +6,33 @@ import { ProductsCollection } from '../products-collection';
 import { Total } from '../../components/total';
 
 import { clearCart } from '../../store/cart/actions';
-import { cartItemsSelector, amountSelector, sumSelector } from '../../store/cart/selectors';
+import {
+  cartItemsSelector,
+  amountSelector,
+  sumSelector,
+} from '../../store/cart/selectors';
 
-const Cart = props => {
-    const dispatch = useDispatch();
-    const goods = useSelector(cartItemsSelector);
-    const goodsCount = useSelector(amountSelector);
-    const sum = useSelector(sumSelector);
+const Cart = () => {
+  const dispatch = useDispatch();
+  const goods = useSelector(cartItemsSelector);
+  const goodsCount = useSelector(amountSelector);
+  const sum = useSelector(sumSelector);
 
-    return (
-        <div className="container">
-            <Header title="Market" productsInCart={goodsCount} >
-                {!!goodsCount &&
-                    <Button
-                        text="Очистить корзину"
-                        handleClick={() => dispatch(clearCart())} />
-                }
-            </Header>
+  return (
+    <div className="container">
+      <Header title="Market" productsInCart={goodsCount}>
+        {!!goodsCount && (
+          <Button
+            text="Очистить корзину"
+            handleClick={() => dispatch(clearCart())}
+          />
+        )}
+      </Header>
 
-            <ProductsCollection type="cart" products={goods} />
-            {!!goodsCount &&
-                <Total sum={sum} />
-            }
-        </div >)
-}
+      <ProductsCollection type="cart" products={goods} />
+      {!!goodsCount && <Total sum={sum} />}
+    </div>
+  );
+};
 
 export default React.memo(Cart);

@@ -3,7 +3,7 @@ import reducer from './reducer';
 import selectors from './selectors';
 
 export default {
-    actions,
-    reducer,
-    selectors,
+  actions,
+  reducer,
+  selectors,
 };

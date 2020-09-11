@@ -1,25 +1,24 @@
 $block: 'shopping-cart';
 
 .#{$block} {
-   height: 30px;
-   width: 40px;
-   background-image: url('../../assets/shopping_cart-icon.png');
-   background-size: contain;
-   background-repeat: no-repeat;
+  height: 30px;
+  width: 40px;
+  background-image: url('../../assets/shopping_cart-icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 
-   .counter {
+  .counter {
     position: absolute;
     display: flex;
-       height: 20px;
-       width: 22px;
-       max-width: 20px;     
-       justify-content: center;
-       align-items: center;
-       bottom: 2px;
-       right: 5px;
-       border-radius: 50%;
-       background-color: blue;
-       color: white;
-   }
+    height: 20px;
+    width: 22px;
+    max-width: 20px;
+    justify-content: center;
+    align-items: center;
+    bottom: 2px;
+    right: 5px;
+    border-radius: 50%;
+    background-color: blue;
+    color: white;
   }
-  
+}
