@@ -8,12 +8,41 @@ import {
 
 import cart from './cart/reducer';
 
+const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem("state");
+    if (!serializedState) return undefined;
+    else return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+const persistedStore = loadState();
+
 const reducers = combineReducers({
-  cart
+  cart,
 });
 
 const enhancers = compose(
   window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
 );
 
-export default createStore(reducers, enhancers);
+const store = createStore(reducers, persistedStore, enhancers);
+
+const saveState = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("state", serializedState);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+store.subscribe(() => {
+  saveState({
+    cart: store.getState().cart
+  });
+});
+
+export default store;
