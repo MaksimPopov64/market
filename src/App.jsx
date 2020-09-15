@@ -1,11 +1,11 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-import { Main } from './containers/main';
-import { Cart } from './containers/cart';
+import React from "react";
+import { Provider } from "react-redux";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { createBrowserHistory } from "history";
+import { Main } from "./containers/main";
+import { Cart } from "./containers/cart";
 
-import store from './store';
+import store from "./store";
 
 const history = createBrowserHistory();
 
