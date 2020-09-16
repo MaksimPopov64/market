@@ -1,28 +1,28 @@
-import path from 'path';
+import path from "path";
 
-import webpack from 'webpack';
+import webpack from "webpack";
 
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
-import ImageMinPlugin from 'imagemin-webpack-plugin';
-import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import CopyWebpackPlugin from "copy-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import UglifyJSPlugin from "uglifyjs-webpack-plugin";
+import ImageMinPlugin from "imagemin-webpack-plugin";
+import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin";
 
-import autoprefixer from 'autoprefixer';
+import autoprefixer from "autoprefixer";
 
 module.exports = {
   devtool: false,
   entry: {
-    main: ['@babel/polyfill', './src/index.js'],
+    main: ["@babel/polyfill", "./src/index.js"],
   },
   output: {
-    path: path.join(__dirname, 'dist'),
-    filename: '[name].js',
+    path: path.join(__dirname, "dist"),
+    filename: "[name].js",
   },
   resolve: {
-    extensions: ['.js', '.jsx', 'json', 'scss', 'css'],
+    extensions: [".js", ".jsx", ".tsx", ".ts", "json", "scss", "css"],
   },
   module: {
     rules: [
@@ -31,12 +31,16 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
-              presets: ['@babel/preset-env', '@babel/react'],
+              presets: ["@babel/preset-env", "@babel/react"],
             },
           },
         ],
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        loader: "ts-loader",
       },
       {
         test: /\.(sa|sc|c)ss$/,
@@ -46,11 +50,11 @@ module.exports = {
             options: { sourceMap: true },
           },
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: { sourceMap: true },
           },
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: { sourceMap: true },
           },
         ],
@@ -59,32 +63,32 @@ module.exports = {
         test: /\.(png|gif|jpe?g)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[path][name].[ext]',
+              name: "[path][name].[ext]",
             },
           },
-          'img-loader',
+          "img-loader",
         ],
       },
     ],
   },
   plugins: [
     new CopyWebpackPlugin({
-      patterns: [{ from: './src/assets', to: 'assets' }],
+      patterns: [{ from: "./src/assets", to: "assets" }],
     }),
     new webpack.SourceMapDevToolPlugin({
-      filename: '[name].js.map',
-      exclude: ['bundle.js'],
+      filename: "[name].js.map",
+      exclude: ["bundle.js"],
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
-      chunkFilename: '[id].[hash].css',
+      filename: "[name].[hash].css",
+      chunkFilename: "[id].[hash].css",
     }),
     new HtmlWebpackPlugin({
-      filename: './index.html',
-      template: './src/index.html',
+      filename: "./index.html",
+      template: "./src/index.html",
     }),
   ],
   optimization: {

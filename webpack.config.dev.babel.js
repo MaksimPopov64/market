@@ -1,17 +1,17 @@
-import webpack from 'webpack';
+import webpack from "webpack";
 
-import CopyWebpackPlugin from 'copy-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CopyWebpackPlugin from "copy-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
 module.exports = {
   devtool: false,
   entry: {
-    main: ['@babel/polyfill', './src/index.js'],
+    main: ["@babel/polyfill", "./src/index.js"],
   },
   output: {
-    filename: '[name].js',
-    path: __dirname + '/build',
-    chunkFilename: '[id].[chunkhash].js',
+    filename: "[name].js",
+    path: __dirname + "/build",
+    chunkFilename: "[id].[chunkhash].js",
   },
   devServer: {
     historyApiFallback: true,
@@ -19,7 +19,7 @@ module.exports = {
     hot: true,
   },
   resolve: {
-    extensions: ['.js', '.jsx', 'json', 'scss', 'css'],
+    extensions: [".js", ".jsx", ".tsx", ".ts", "json", "scss", "css"],
   },
   module: {
     rules: [
@@ -28,27 +28,31 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
-              presets: ['@babel/preset-env', '@babel/react'],
+              presets: ["@babel/preset-env", "@babel/react"],
               cacheDirectory: true,
-              plugins: ['react-hot-loader/babel'],
+              plugins: ["react-hot-loader/babel"],
             },
           },
         ],
       },
       {
+        test: /\.(ts|tsx)$/,
+        loader: "ts-loader",
+      },
+      {
         test: /\.(sa|sc|c)ss$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: "style-loader",
           },
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: { sourceMap: true },
           },
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: { sourceMap: true },
           },
         ],
@@ -57,33 +61,33 @@ module.exports = {
         test: /\.(png|gif|jpe?g)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[path][name].[ext]',
+              name: "[path][name].[ext]",
             },
           },
-          'img-loader',
+          "img-loader",
         ],
       },
     ],
   },
   plugins: [
     new CopyWebpackPlugin({
-      patterns: [{ from: './src/assets', to: 'assets' }],
+      patterns: [{ from: "./src/assets", to: "assets" }],
     }),
     new webpack.DefinePlugin({
-      'process.env': {
+      "process.env": {
         devServer: true,
       },
     }),
     new webpack.SourceMapDevToolPlugin({
-      filename: '[name].js.map',
-      exclude: ['bundle.js'],
+      filename: "[name].js.map",
+      exclude: ["bundle.js"],
     }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      filename: './index.html',
-      template: './src/index.html',
+      filename: "./index.html",
+      template: "./src/index.html",
     }),
   ],
 };
