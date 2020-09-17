@@ -1,20 +1,14 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import {
-  ADD_TO_CART,
-  REMOVE_ITEM,
-  DECREMENT_COUNT,
-  CLEAR_CART,
-  INCREMENT_COUNT,
-} from './actions';
+import { ADD_TO_CART, REMOVE_ITEM, DECREMENT_COUNT, CLEAR_CART, INCREMENT_COUNT } from "./actions";
 
-function items(state = [], action) {
+function items(state = [], action: any) {
   const { type, payload } = action;
   switch (type) {
     case ADD_TO_CART: {
-      const items = state;
+      const items: string[] = ([] = state);
       const item = payload;
-      const isExist = items.find((one) => one.id === item.id);
+      const isExist = items.find((one: any) => one.id === item.id);
       !isExist && items.push(item);
       return [...items.reverse()];
     }
@@ -22,7 +16,7 @@ function items(state = [], action) {
     case REMOVE_ITEM: {
       let items = state;
       const item = payload;
-      items = items.filter((product) => product.id !== item.id);
+      items = items.filter((product: any) => product.id !== item.id);
 
       return [...items];
     }
@@ -36,7 +30,7 @@ function items(state = [], action) {
   }
 }
 
-function counters(state = {}, action) {
+function counters(state: any = {}, action: any) {
   const { type, payload } = action;
   switch (type) {
     case ADD_TO_CART: {

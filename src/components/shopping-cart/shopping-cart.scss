@@ -1,9 +1,9 @@
-$block: 'shopping-cart';
+$block: "shopping-cart";
 
 .#{$block} {
   height: 30px;
   width: 40px;
-  background-image: url('../../assets/shopping_cart-icon.png');
+  background-image: url("../../assets/img/shopping_cart-icon.png");
   background-size: contain;
   background-repeat: no-repeat;
 

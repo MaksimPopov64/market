@@ -1,12 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-import { ShoppingCart } from '../shopping-cart';
+import { ShoppingCart } from "../shopping-cart";
 
-import './header.scss';
+import "./header.scss";
 
-const Header = ({ title, url, productsInCart, children, backUrl }) => (
+type Props = {
+  title: string;
+  url?: string;
+  productsInCart: number;
+  children?: any;
+  backUrl?: string;
+};
+
+const Header = ({ title, url, productsInCart, children, backUrl }: Props) => (
   <div className="header">
     <div className="button">{children}</div>
     <section className="title">{title}</section>

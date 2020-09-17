@@ -6,7 +6,7 @@ const block = "button";
 type Props = {
   text: string;
   handleClick: MouseEventHandler;
-  className: string;
+  className?: string;
 };
 
 const Button = ({ text, handleClick, className = "" }: Props) => (

@@ -1,4 +1,4 @@
-$block: 'products-collection';
+$block: "products-collection";
 
 .#{$block} {
   display: flex;
@@ -31,7 +31,7 @@ $block: 'products-collection';
     right: 5px;
     height: 20px;
     width: 20px;
-    background-image: url('../../assets/trash.png');
+    background-image: url("../../assets/img/trash.png");
     background-size: contain;
     background-repeat: no-repeat;
   }

@@ -10,12 +10,11 @@ import UglifyJSPlugin from "uglifyjs-webpack-plugin";
 import ImageMinPlugin from "imagemin-webpack-plugin";
 import OptimizeCssAssetsPlugin from "optimize-css-assets-webpack-plugin";
 
-import autoprefixer from "autoprefixer";
-
 module.exports = {
+  mode: "production",
   devtool: false,
   entry: {
-    main: ["@babel/polyfill", "./src/index.js"],
+    main: ["@babel/polyfill", "./src/index.ts"],
   },
   output: {
     path: path.join(__dirname, "dist"),
@@ -65,7 +64,7 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              name: "[path][name].[ext]",
+              outputPath: "images",
             },
           },
           "img-loader",

@@ -11,7 +11,7 @@ const history = createBrowserHistory();
 
 const App = () => (
   <Provider store={store}>
-    <Router history={history}>
+    <Router>
       <Switch>
         <Route exact path="/" render={() => <Main />} />
         <Route path="/cart" render={() => <Cart />} />

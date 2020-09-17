@@ -6,7 +6,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 module.exports = {
   devtool: false,
   entry: {
-    main: ["@babel/polyfill", "./src/index.js"],
+    main: ["@babel/polyfill", "./src/index.ts"],
   },
   output: {
     filename: "[name].js",
