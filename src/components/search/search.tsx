@@ -1,18 +1,31 @@
-import React from "react";
-import _ from "lodash";
+import React, { useCallback } from "react";
+import debounce from "lodash/debounce";
 
 import "./search.scss";
 
 const block = "search";
 
 type Props = {
-  handleChange: (e: string) => void;
+  handleChange: Function;
 };
 
-const Search = ({ handleChange }: Props) => (
-  <div className={block}>
-    <input type="text" placeholder="Search" onChange={(e) => _.debounce<any>(handleChange(e.target.value))} />
-  </div>
-);
+const Search = ({ handleChange }: Props) => {
+  const debouncedGetBooks = useCallback(
+    debounce((query) => {
+      handleChange(query);
+    }, 700),
+    []
+  );
+
+  const onInputChange = (e: React.SyntheticEvent) => {
+    debouncedGetBooks((e.target as HTMLInputElement).value);
+  };
+
+  return (
+    <div className={block}>
+      <input type="text" placeholder="Search" onChange={onInputChange} />
+    </div>
+  );
+};
 
 export default Search;
